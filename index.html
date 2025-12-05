@@ -202,9 +202,9 @@ async function getNowPlaying() {
         ${track.album.name}
     `;
     document.getElementById("bg").style.background = `url(${track.album.images[0].url}) center/cover no-repeat`;
-    document.getElementById("bg").style.backgroundSize = `270%`;
+    document.getElementById("bg").style.backgroundSize = `200%`;
     document.getElementById("bg").style.overflow = "hidden";
-    document.getElementById("bg").style.backdropFilter = `blur(90px) brightness(0.9)`;
+    document.getElementById("bg").style.backdropFilter = `blur(100px) brightness(0.9)`;
     document.getElementById("loginBtn").style.display = "none";
 }
 
