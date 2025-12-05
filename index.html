@@ -253,8 +253,7 @@ async function refreshToken() {
 
 
 document.getElementById("loginBtn").addEventListener("click", startLogin);
-
-await refreshToken();
+refreshToken();
 getNowPlaying();
 setInterval(getNowPlaying, 5000);
 
