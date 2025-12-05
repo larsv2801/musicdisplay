@@ -28,12 +28,12 @@
     background-position: center;
     filter: blur(90px) brightness(0.9);
     animation: turn 300s linear infinite;
-    z-index: -1; /* achter content */
+    z-index: -1;
 }
 
 @keyframes turn {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+    from { transform: translate(-50%,-50%) rotate(0deg); }
+    to { transform: translate(-50%,-50%) rotate(360deg); }
 }
 
 
