@@ -194,8 +194,12 @@ async function getNowPlaying() {
 
     if (res.status === 401) {
         document.getElementById("nowPlaying").innerText = "Token ongeldig. Log opnieuw in.";
-        await refreshToken();
-        return getNowPlaying();
+        const refreshed = await refreshToken();
+if (refreshed) {
+    return getNowPlaying();
+} else {
+    document.getElementById("nowPlaying").innerText = "Log opnieuw in.";
+}
     }
 
     const data = await res.json();
@@ -230,7 +234,7 @@ if (code) {
 
 async function refreshToken() {
     const refresh_token = localStorage.getItem("refresh_token");
-    if(!refresh_token) return;
+    if(!refresh_token) return false;
 
     const body = new URLSearchParams({
         client_id: clientId,
@@ -245,10 +249,15 @@ async function refreshToken() {
     });
 
     const data = await res.json();
+
     if(data.access_token) {
         localStorage.setItem("access_token", data.access_token);
+        return true;
     }
+
+    return false;
 }
+
 
 
 
@@ -256,7 +265,6 @@ document.getElementById("loginBtn").addEventListener("click", startLogin);
 refreshToken();
 getNowPlaying();
 
-setInterval(refreshToken, 45 * 60 * 1000);
 setInterval(getNowPlaying, 5000);
 
 </script>
